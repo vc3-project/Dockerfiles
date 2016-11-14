@@ -1,0 +1,3 @@
+[submodule "htcondor-docker"]
+	path = htcondor-docker
+	url = https://github.com/LincolnBryant/htcondor-docker
