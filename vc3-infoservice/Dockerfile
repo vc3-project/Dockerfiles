@@ -42,4 +42,4 @@ RUN mkdir -p $SRVROOT/private && \
 # Run the Info Service installer
 RUN cd /home/infoservice/git/vc3-info-service; python setup.py install --home=~/
 # Run Info Service
-RUN cd /home/infoservice/git/vc3-info-service; ./vc3infoservice/infoservice.py -d --conf etc/vc3-infoservice.conf
+CMD cd $HOME/git/vc3-info-service; vc3infoservice/infoservice.py -d --conf etc/vc3-infoservice.conf --debug
