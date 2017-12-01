@@ -10,7 +10,7 @@ RUN yum install epel-release -y
 RUN yum install python-pip python-devel git openssl supervisor -y
 RUN yum groupinstall "Development Tools" -y
 RUN pip install --upgrade pip
-RUN pip install pyOpenSSL cherrypy python-novaclient boto PyYAML requests
+RUN pip install pyOpenSSL cherrypy python-novaclient boto PyYAML requests ansible
 RUN mkdir src
 
 RUN pushd src && \
