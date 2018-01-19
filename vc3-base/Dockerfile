@@ -1,16 +1,18 @@
 FROM centos:centos7
 LABEL maintainer lincolnb@uchicago.edu
-LABEL version 2017-11-27
+LABEL version 2018-01-18.1
 
 # create unprivileged user
 RUN adduser vc3
 
 # install dependencies
-RUN yum install epel-release -y
-RUN yum install python-pip python-devel git openssl supervisor -y
+RUN yum install epel-release centos-release-openstack-ocata -y
+RUN yum install python-pip python-devel git openssl supervisor condor condor-python python-novaclient -y
 RUN yum groupinstall "Development Tools" -y
 RUN pip install --upgrade pip
-RUN pip install pyOpenSSL cherrypy python-novaclient boto PyYAML requests ansible
+RUN pip install pyOpenSSL cherrypy boto PyYAML requests ansible
+# new error..
+RUN pip install --upgrade six
 RUN mkdir src
 
 RUN pushd src && \
@@ -61,4 +63,7 @@ RUN pushd src && \
     python setup.py bdist_rpm && \
     yum localinstall dist/*.rpm -y && \
     popd && \
+    popd 
+RUN pushd src && \
+    git clone https://github.com/vc3-project/vc3-playbooks && \
     popd 
